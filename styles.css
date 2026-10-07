@@ -1,0 +1,666 @@
+/* 3D Galaxy Theme CSS */
+
+:root {
+    --space-bg: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    --light-space-bg: radial-gradient(ellipse at bottom, #304a6e 0%, #151824 100%);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --neon-blue: #00f3ff;
+    --neon-purple: #9d00ff;
+    --text-main: #e0e6ed;
+    --text-muted: #a0aec0;
+}
+
+body.light-galaxy {
+    --space-bg: var(--light-space-bg);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--space-bg);
+    background-attachment: fixed;
+    color: var(--text-main);
+    overflow-x: hidden;
+    transition: background 1s ease;
+}
+
+/* Background animated elements */
+body::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(157,0,255,0.05) 0%, transparent 40%),
+                radial-gradient(circle, rgba(0,243,255,0.05) 0%, transparent 40%);
+    background-position: 0 0, 50% 50%;
+    animation: galaxyRotate 60s linear infinite;
+    z-index: -1;
+}
+
+@keyframes galaxyRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Header & Nav */
+.glass-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 15, 30, 0.6);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.neon-text-small {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #fff;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+    letter-spacing: 2px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--neon-blue);
+    text-shadow: 0 0 8px var(--neon-blue);
+}
+
+/* 3D Button */
+.btn-3d {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 0 rgba(255,255,255,0.2);
+    transform: perspective(500px) translateZ(0px);
+    transition: all 0.3s ease;
+}
+
+.btn-3d:hover {
+    transform: perspective(500px) translateZ(10px) translateY(-2px);
+    box-shadow: 0 15px 35px 0 rgba(0,243,255, 0.2), inset 0 1px 0 rgba(255,255,255,0.4);
+    border-color: rgba(0, 243, 255, 0.5);
+}
+
+.btn-3d:active {
+    transform: perspective(500px) translateZ(-5px) translateY(2px);
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Main Layout Layout */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 1rem;
+    gap: 4rem;
+}
+
+/* Glass Panels (3D Sections) */
+.glass-panel {
+    background: var(--glass-bg);
+    border-radius: 20px;
+    padding: 3rem;
+    width: 100%;
+    max-width: 900px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+}
+
+.glass-panel:hover {
+    transform: perspective(1000px) translateY(-10px) rotateX(2deg);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7), 0 0 20px rgba(0, 243, 255, 0.1), inset 0 1px 0 rgba(255,255,255,0.2);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+}
+
+/* Hero Specifics */
+.hero-panel {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.avatar-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 20px rgba(0,0,0,0.5);
+    animation: floatAvatar 6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+.avatar-3d {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+@keyframes floatAvatar {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.neon-text {
+    margin: 0;
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 0 0 10px #fff, 0 0 20px var(--neon-purple), 0 0 40px var(--neon-purple), 0 0 80px var(--neon-blue);
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Section Titles */
+.section-title {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, var(--neon-blue), transparent) 1;
+    padding-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+/* 3D Cards for Projects */
+.card-3d {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.card-3d:hover {
+    transform: translateX(10px) scale(1.02);
+    background: rgba(0, 0, 0, 0.4);
+    border-left: 4px solid var(--neon-purple);
+    box-shadow: -5px 15px 30px rgba(0,0,0,0.5), 0 0 15px rgba(157, 0, 255, 0.2);
+}
+
+.card-3d h3 {
+    color: var(--neon-blue);
+    margin-top: 0;
+}
+
+/* 3D Badges for Skills */
+.badge-3d {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(0,243,255,0.2), rgba(157,0,255,0.2));
+    border: 1px solid var(--neon-blue);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3), inset 0 2px 2px rgba(255,255,255,0.2);
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-blue);
+    transition: transform 0.2s ease;
+}
+
+.badge-3d:hover {
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Contact Grid */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--glass-border);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateZ(20px) translateY(-5px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 10px 20px rgba(0,243,255,0.1);
+}
+
+.contact-card a {
+    color: var(--neon-blue);
+    text-decoration: none;
+}
+
+.contact-card a:hover {
+    text-shadow: 0 0 8px var(--neon-blue);
+}
+
+/* Footer */
+.glass-footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(10, 15, 30, 0.8);
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+}
+
+
+/* About Section Minimalist Styles */
+.about-minimal {
+    text-align: left; /* Override any centering */
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+}
+
+.about-avatar-wrapper {
+    flex: 1 1 250px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.about-avatar {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.about-avatar:hover {
+    transform: scale(1.05) rotate(-2deg);
+    border-color: var(--neon-purple);
+}
+
+.about-text {
+    flex: 2 1 400px;
+}
+
+.about-text h3 {
+    font-size: 2rem;
+    color: var(--neon-blue);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+.about-text p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+.about-text strong {
+    color: #fff;
+}
+
+.highlight-box {
+    background: rgba(157, 0, 255, 0.1);
+    border-left: 4px solid var(--neon-purple);
+    padding: 1rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    font-size: 1.05rem;
+    color: #e0e6ed;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+
+/* Pixel Art Skills Section Styles */
+.pixel-skills-container {
+    padding-top: 2rem;
+}
+
+.pixel-title {
+    font-family: 'Courier New', Courier, monospace; /* Blocky font for pixel vibe */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.pixel-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 2rem;
+}
+
+.skill-category {
+    background: rgba(10, 15, 30, 0.4);
+    border: 4px solid var(--neon-blue); /* Thick, blocky border */
+    padding: 2rem;
+    box-shadow: 8px 8px 0px rgba(0, 243, 255, 0.2); /* Hard shadow typical of 8-bit/pixel art */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.skill-category:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px rgba(0, 243, 255, 0.4);
+}
+
+.pixel-subtitle {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--neon-purple);
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px dashed var(--neon-purple);
+    padding-bottom: 0.5rem;
+}
+
+/* Blocky Progress Bars */
+.skill-item {
+    margin-bottom: 1.5rem;
+}
+
+.skill-name {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.pixel-progress-bar {
+    width: 100%;
+    height: 24px;
+    background-color: #222;
+    border: 2px solid #555;
+    position: relative;
+}
+
+.pixel-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neon-purple), var(--neon-blue));
+    border-right: 2px solid #fff;
+    box-shadow: inset 0 4px 0 rgba(255,255,255,0.2);
+}
+
+/* Specific Fill Widths */
+.fill-80 { width: 80%; }
+.fill-75 { width: 75%; }
+.fill-60 { width: 60%; }
+
+/* Pixel List */
+.pixel-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pixel-list-item {
+    padding: 0.8rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--accent-color);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.pixel-list-item:hover {
+    transform: scale(1.05) translateX(10px);
+    background: rgba(0, 243, 255, 0.1);
+    border-left-color: var(--neon-blue);
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+/* Pixel Tags / Badges */
+.pixel-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.pixel-badge {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid var(--neon-purple);
+    padding: 0.5rem 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+    transition: all 0.2s;
+    cursor: default;
+}
+
+.pixel-badge::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(157, 0, 255, 0.4);
+    z-index: -1;
+    transition: all 0.2s;
+}
+
+.pixel-badge:hover {
+    transform: translate(-2px, -2px);
+    background-color: var(--neon-purple);
+    color: #000;
+}
+
+.pixel-badge:hover::after {
+    bottom: -8px;
+    right: -8px;
+    background-color: rgba(0, 243, 255, 0.6);
+}
+
+
+/* ========================================================
+   Naruto Style Hero Section
+   ======================================================== */
+
+/* Naruto Theme Variables (Default / Light Mode) */
+:root {
+    --naruto-bg: #f8f9fa; /* Light grey/paper */
+    --naruto-primary: #ff4500; /* Hokage Orange */
+    --naruto-secondary: #000000; /* Ninja Black */
+    --naruto-accent: #e10000; /* Sharingan Red */
+    --naruto-plate: #d1d5db; /* Silver/Metal headband plate */
+    --naruto-text: #1a1a1a;
+}
+
+/* Night Mode (System Default via Media Query) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --naruto-bg: #111111; /* Dark Akatsuki / Anbu vibes */
+        --naruto-primary: #ff4500; /* Keeps the orange pop */
+        --naruto-secondary: #ffffff; /* White accents */
+        --naruto-accent: #e10000;
+        --naruto-plate: #4b5563; /* Darker metal */
+        --naruto-text: #f3f4f6;
+    }
+}
+
+/* Manual Dark Mode Override */
+body.naruto-dark {
+    --naruto-bg: #111111;
+    --naruto-primary: #ff4500;
+    --naruto-secondary: #ffffff;
+    --naruto-accent: #e10000;
+    --naruto-plate: #4b5563;
+    --naruto-text: #f3f4f6;
+}
+
+/* Manual Light Mode Override */
+body.naruto-light {
+    --naruto-bg: #f8f9fa;
+    --naruto-primary: #ff4500;
+    --naruto-secondary: #000000;
+    --naruto-accent: #e10000;
+    --naruto-plate: #d1d5db;
+    --naruto-text: #1a1a1a;
+}
+
+.naruto-hero {
+    position: relative;
+    text-align: center;
+    padding: 8rem 2rem;
+    background-color: var(--naruto-bg);
+    /* Background Image provided by user, blended with the theme */
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), var(--naruto-bg)), url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    border-bottom: 8px solid var(--naruto-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    transition: background-color 0.4s ease;
+}
+
+.naruto-plate {
+    position: relative;
+    background: var(--naruto-plate);
+    padding: 3rem 4rem;
+    border-radius: 12px;
+    border: 3px solid #333;
+    box-shadow: inset 0 2px 5px rgba(255,255,255,0.5), inset 0 -4px 10px rgba(0,0,0,0.5), 0 15px 25px rgba(0,0,0,0.6);
+    /* Subtle scratched metal texture */
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.02) 10px, rgba(0,0,0,0.02) 20px);
+    z-index: 2;
+    transition: background-color 0.4s ease;
+}
+
+/* Ninja Headband Bolts */
+.headband-bolt {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #9ca3af;
+    border-radius: 50%;
+    border: 2px solid #333;
+    box-shadow: inset -2px -2px 4px rgba(0,0,0,0.4), inset 2px 2px 4px rgba(255,255,255,0.8);
+}
+.headband-bolt::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px; height: 2px;
+    background-color: #333; /* Bolt slit */
+}
+.top-left { top: 15px; left: 15px; }
+.top-right { top: 15px; right: 15px; }
+.bottom-left { bottom: 15px; left: 15px; }
+.bottom-right { bottom: 15px; right: 15px; }
+
+.naruto-avatar-wrapper {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 50%;
+    border: 6px solid var(--naruto-primary);
+    box-shadow: 0 0 25px var(--naruto-primary);
+    overflow: hidden;
+    position: relative;
+    background: #000;
+}
+
+.naruto-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.naruto-avatar-wrapper:hover .naruto-avatar {
+    transform: scale(1.1);
+}
+
+.naruto-title {
+    font-size: 3.5rem;
+    margin: 0;
+    color: var(--naruto-secondary);
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px 0px var(--naruto-primary);
+    -webkit-text-stroke: 1px #000;
+}
+
+.naruto-subtitle {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    color: #333;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    background: var(--naruto-primary);
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    display: inline-block;
+    border: 2px solid #000;
+    text-transform: uppercase;
+    box-shadow: 3px 3px 0 #000;
+}
